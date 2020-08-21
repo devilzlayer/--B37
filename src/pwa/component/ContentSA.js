@@ -20,7 +20,7 @@ const ContentSAItems = [
       color: "red",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/BTI_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/BTI_bg.25c010bf.svg",
     },
     {
       id: 1201,
@@ -31,7 +31,7 @@ const ContentSAItems = [
       color: "blue",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/IM-sports_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/IM-sports_bg.64e96025.svg",
     },
     {
       id: 1211,
@@ -42,7 +42,7 @@ const ContentSAItems = [
       color: "red",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/sports_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/sports_bg.4ca11c53.svg",
     },
   ],
   [
@@ -55,7 +55,7 @@ const ContentSAItems = [
       color: "green",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/AG_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/AG_bg.110d51c3.svg",
     },
     {
       id: 1209,
@@ -66,7 +66,7 @@ const ContentSAItems = [
       color: "blue",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/EB_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/EB_bg.34a1d2b0.svg",
     },
   ],
   [
@@ -79,7 +79,7 @@ const ContentSAItems = [
       color: "red",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/IM-esports_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/IM-esports_bg.953ec0c5.svg",
     },
   ],
   [
@@ -92,7 +92,7 @@ const ContentSAItems = [
       color: "red",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/poker_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/poker_bg.6269af16.svg",
     },
   ],
   [
@@ -105,7 +105,7 @@ const ContentSAItems = [
       color: "green",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/CQ_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/CQ_bg.9c44ff3d.svg",
     },
     {
       id: 1202,
@@ -116,7 +116,7 @@ const ContentSAItems = [
       color: "red",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/PT_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/PT_bg.3243a900.svg",
     },
     {
       id: 1203,
@@ -127,7 +127,7 @@ const ContentSAItems = [
       color: "blue",
       text:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor",
-      image: require("../assets/img/home/_background/MG_bg.svg"),
+      image: "https://m.ubet8866.com/static/media/MG_bg.2b8bb41a.svg",
     },
   ],
 ];
