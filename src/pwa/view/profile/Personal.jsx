@@ -1,17 +1,10 @@
 import React, { useState, useContext, useCallback, useRef } from "react";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import { mobileModel } from "react-device-detect";
 import { Wrap, Service } from "./";
 import { UIAlertSA, LiveChatSA } from "../../component/";
 import { FormField } from "../../../component/";
 import { withAuth } from "../../util";
-//import {getCurrentDate} from "../../../util";
-
-//import { getDates } from "../../../util";
-
-
-
 
 const Switch = () => {
   return (
@@ -63,7 +56,7 @@ const Personal = () => {
     qq: user.qq || "",
     wechat: user.wechat || "",
     device: mobileModel, //"Huawei Mate 20 Pro",
-    updates: [{ text: "1.08.27" }, { text: moment().format("MMM DD hh:mm:ss YYYY")}],
+    updates: [{ text: "4.14.116" }, { text: "Thu Apr 30 18:27:58 CSTt 2020" }],
   });
 
   const [subform, setSubform] = useState({
@@ -173,38 +166,38 @@ const Personal = () => {
         name: "device",
       },
     },
-     {
-       field: {
-         label: "清理缓存",
-         class: "cache group",
-         type: "text",
-         link: "",
-       },
-     },
-     /*{
-       field: {
-         label: "清理缓存",
-         class: "cache group",
-         link: "cache",
-       },
-       input: {
-         readOnly: true,
-         name: "cache",
-       },
-     },*/
-     {
-       field: {
-         label: "检查更新",
-         class: "updates group bottom",
-         type: "text",
-       },
-       input: {
-         id: "updates",
-         type: "text",
-         readOnly: true,
-         name: "updates",
-       },
-     },
+    // {
+    //   field: {
+    //     label: "清理缓存",
+    //     class: "cache group",
+    //     type: "link",
+    //     link: "",
+    //   },
+    // },
+    // {
+    //   field: {
+    //     label: "清理缓存",
+    //     class: "cache group",
+    //     link: "cache",
+    //   },
+    //   input: {
+    //     readOnly: true,
+    //     name: "cache",
+    //   },
+    // },
+    // {
+    //   field: {
+    //     label: "检查更新",
+    //     class: "updates group bottom",
+    //     type: "text",
+    //   },
+    //   input: {
+    //     id: "updates",
+    //     type: "text",
+    //     readOnly: true,
+    //     name: "updates",
+    //   },
+    // },
   ];
 
   const onChange = (e) => {
