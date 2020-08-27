@@ -76,6 +76,55 @@
 			
 		}
 	}
+
+	&.error{
+		.ticker-button{
+			text-align: center;
+		}
+	}
+
+	&.wap{
+		.ticker-over-sa--header{
+			display: none;
+		}
+		.ticker-over-sa--body{
+			position: relative;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+			padding-top: 50px;
+			.xclose{
+				width: 28px;
+				height: 28px;
+				border-radius: 6px;
+				display: inline-block;
+				position: absolute;
+				top: 6px;
+				right: 10px;
+				&:before,&:after{
+					content: '';
+					position: absolute;
+					width: 24px;
+					height: 3px;
+					background-color: black;
+					border-radius: 2px;
+					top: 16px;
+				}
+				&:before{
+					-webkit-transform:rotate(45deg);
+					-moz-transform:rotate(45deg);
+					transform:rotate(45deg);
+					left:2px;
+				}
+				&:after{
+					-webkit-transform:rotate(-45deg);
+					-moz-transform:rotate(-45deg);
+					transform:rotate(-45deg);
+					right:2px;
+				}
+			}
+
+		}
+	}
 }
 
 

@@ -54,9 +54,7 @@ function Promotions() {
 						</div> */}
               <div className="banner-inner-wrap">
                 <img
-                  src={require(`../assets/img/promotions/promotion_banner${
-                    i + 1
-                  }.png`)}
+                  src={`https://${promotion.bannerurl}`}
                   alt={promotion.title}
                 />
               </div>

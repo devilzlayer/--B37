@@ -1,68 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import cx from 'classnames';
+import React, { useState, useEffect } from "react";
+import cx from "classnames";
 
-import { Wrap } from '../';
-import { Service } from '../';
+import { Wrap } from "../";
+import { Service } from "../";
 
-import '../../../assets/scss/profile/ComissionReport.scss';
+import "../../../assets/scss/profile/ComissionReport.scss";
 
 const ComissionReport = () => {
+  const [reports, setReports] = useState({
+    status: 0,
+    list: [],
+  });
 
-	const [ reports, setReports ] = useState({
-		status: 0,
-		list: [],
-	});
+  useEffect(() => {
+    const req = Service.Agency.report({
+      ty: "1",
+    });
 
-	useEffect(() => {
+    req.promise.then(
+      (r) => {
+        console.info(r);
 
-		const req = Service.Agency.report({
-			ty: '1',
-		});
+        setReports({
+          status: 1,
+          list: r.info.map((r) => r),
+        });
+      },
+      (e) => {
+        if (!e.is_aborted) {
+          console.warn(e);
+        }
+      }
+    );
 
-		req.promise.then(r => {
+    return () => req.cancel();
+  }, []);
 
-			console.info(r);
-
-			setReports({
-				status: 1,
-				list: r.info.map(r => r),
-			});
-
-		}, e => {
-
-			if (!e.is_aborted) {
-				console.warn(e);
-			}
-
-		});
-
-		return () => req.cancel();
-
-	}, []);
-
-	return (
-		<Wrap name="佣金报告" className="comission-report" isLoading={!reports.status}>
-			<div className="table-columns sb">
-				<p>名称</p>
-				<p>代理商</p>
-				<p>量</p>
-				<p>时间</p>
-			</div>
-			<div className="table-content table-like">
-				{reports.list.map((report, i) => (
-				<div key={i} className={cx('table-content--item')}>
-					<div className="inner">
-						<p>{report.agent_name}</p>
-						<p>{report.real_name}</p>
-						<p>{report.amount}</p>
-						<p>{report.verify_time}</p>
-					</div>
-				</div>
-				))}
-			</div>
-		</Wrap>
-	);
-
-}
+  return (
+    <Wrap
+      name="佣金报告"
+      className="comission-report"
+      isLoading={!reports.status}
+    >
+      <div className="card-head">
+        <div className="card-title">
+          <span className="active">名称</span>
+          <span>代理商</span>
+          <span>量</span>
+          <span>时间</span>
+        </div>
+      </div>
+      <div className="card-body">
+        {reports.list && reports.list.length > 0 ? (
+          reports.list.map((report, i) => (
+            <div key={i} className="card-item">
+              <span>{report.agent_name}</span>
+              <span>{report.real_name}</span>
+              <span>{report.amount}</span>
+              <span>{report.verify_time}</span>
+            </div>
+          ))
+        ) : (
+          <div className="no-transactions">
+            <div className="image-box" />
+            <span>暂无记录</span>
+          </div>
+        )}
+      </div>
+    </Wrap>
+  );
+};
 
 export default ComissionReport;

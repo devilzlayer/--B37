@@ -117,7 +117,7 @@ const Withdraws = ({ update, alert }) => {
           ...Service.User.read(),
         }).promise;
 
-        console.log("R", r);
+        // console.log("R", r);
 
         setWithdraws({
           status: 1,
@@ -290,7 +290,7 @@ const Withdraws = ({ update, alert }) => {
     </>
   );
 
-  const _withdraws = __withdraws.map((withdraw, i) => {
+  const _withdraws = withdraws.list.map((withdraw, i) => {
     // console.log(withdraw)
 
     const onSetKey = (value) => {
@@ -469,7 +469,7 @@ const Withdraw = () => {
 
     req.promise.then(
       (r) => {
-        console.log("Got cards:", r);
+        // console.log("Got cards:", r);
 
         const _cardsMap = {};
 
@@ -582,7 +582,7 @@ const Withdraw = () => {
   const onMax = () => {
     setForm({
       ...form,
-      amount: userAuth.data.balance,
+      amount: Math.floor( userAuth.data.balance ),
     });
   };
 
@@ -624,23 +624,21 @@ const Withdraw = () => {
   // console.log(form)
 
   const onShowVenue = () => {
-    // let newObj = ''
-    // if(!showVenue){
-    //   newObj = [
-    //     ...balancesRaw,
-    //     ...balancesRaw,
-    //   ]
-    //   setBalancesRaw(newObj)
-
-    // }else{
-    //   const hlf = Math.ceil(size(balancesRaw) / 2);
-    //   const fst = balancesRaw.splice(0, hlf)
-    //   setBalancesRaw(fst)
-
-    // }
-
     setShowVenue(!showVenue);
   };
+
+  const onlyNumbers = (e) => {
+    const { name , value } = e.currentTarget
+    let regexp  = /^[0-9\b]+$/
+    if (!value || regexp.test(value)) {
+      setForm((f) => ({
+        ...f,
+        [name]: value,
+      }));
+    }
+
+  };
+
 
   // console.log(update)
 
@@ -753,13 +751,9 @@ const Withdraw = () => {
                 ...f,
                 name: f.id,
                 value: form[f.id],
-                onChange: (e) => {
-                  const { name, value } = e.target;
-                  setForm((f) => ({
-                    ...f,
-                    [name]: value,
-                  }));
-                },
+                onChange: (e) => onlyNumbers(e)
+                // onKeyDown: (e) => onlyNumbers(e)  
+
               }}
             />
           ))}

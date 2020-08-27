@@ -26,6 +26,12 @@ export default {
 		...params,
 	}),
 
+	activateListV1: params => api.post('newpwa/ajax_data.php', {
+		type: 'transfer_list_v1',
+		auth: getAuthKey(),
+		...params,
+	}),
+
 	login: params => api.post('newpwa/center.php', {
 		submit_type: 'game_mobile_login',
 		auth: getAuthKey(),
@@ -137,5 +143,13 @@ export default {
 		auth: getAuthKey(),
 		...params,
 	}),
+
+	checkMaintained: params => api.post('newpwa/lobby_login.php', {
+		auth: getAuthKey(),
+		...params,
+	}),
+
+
+
 
 };

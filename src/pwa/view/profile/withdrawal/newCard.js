@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { map, find, head, size, filter } from "lodash";
 import Swal from "sweetalert2";
+import Picker from "react-mobile-picker";
 
 import { FormField, UITabs } from "../../../../component";
 import { User, Card as Service } from "../../../../service";
 import * as Geo from "../../../../service/Geo";
+import { UIAlertSA } from "../../../component";
 
 const banks = [
   "中国工商银行",
@@ -36,6 +38,7 @@ const NewCard = (props) => {
     bank_addr: null,
     bank_no: null,
   });
+
   const [form, setForm] = useState({
     bank_type: "中国工商银行",
     bank_province: "贵州",
@@ -78,6 +81,17 @@ const NewCard = (props) => {
   ];
 
   useEffect(() => {
+      // console.log(show, delCard)
+      document.body.classList.remove("no-scroll");
+      if(show || delCard){
+        document.body.classList.add("no-scroll");
+      }
+    
+
+
+  },[show, delCard])
+
+  useEffect(() => {
     const res = Service.read({
       ...User.read(),
     });
@@ -109,16 +123,6 @@ const NewCard = (props) => {
     newObj = map(newObj, (obj, id) => {
       return { ...obj, id: id };
     });
-    // console.log(newObj)
-    // let newCities = map(Geo.cities , (obj , i) =>{
-    //     let province = find(Geo.provinces, (val) => obj.province === val.title)
-    //     // console.log(province)
-    //     return {
-    //         ...obj,
-    //         id: i,
-    //         chinese_province : province && province.chinese_title
-    //     }
-    // })
 
     setProvList(newObj);
 
@@ -234,6 +238,19 @@ const NewCard = (props) => {
   // console.log( size( Geo.provinces) , size( Geo.cities)  )
   let delCount = 0;
 
+  const PickerWrap = ({ banks }) => (
+    <div className="picker-wrap">
+      {banks.length ? (
+        <Picker
+          height={180}
+          valueGroups={{ bank: tempBank }}
+          optionGroups={{ bank: banks }}
+          onChange={(key, value) => setTempBank(value)}
+        />
+      ) : null}
+    </div>
+  );
+
   return (
     <div
       className={`withdrawal-new-card ${
@@ -241,11 +258,7 @@ const NewCard = (props) => {
       }`}
     >
       <div className="withdrawal-new-card-wrap">
-        <div
-          className={`withdrawal-new-card-content ${
-            show && animate ? "animate" : ""
-          } ${bankPicker ? "hide" : ""}`}
-        >
+        <div className={`withdrawal-new-card-content ${ show && animate ? "animate" : "" } ${bankPicker ? "hide" : ""}`} >
           {!cityPicker ? (
             <div className="w-n-c-fiels-main">
               <span
@@ -283,8 +296,7 @@ const NewCard = (props) => {
               </div>
 
               <div className="w-n-c-set-defaul-wrap">
-                <span
-                  className={`${makeDefault ? "active" : "not"}`}
+                <span className={`${makeDefault ? "active" : "not"}`}
                   // onClick={()=> setMakeDefault(!makeDefault)}
                 >
                   默认银行卡
@@ -328,11 +340,7 @@ const NewCard = (props) => {
         </div>
 
         {/* =============== DELETE BANK */}
-        <div
-          className={`withdrawal-new-card-content ${
-            delCard && animate ? "animate" : ""
-          }`}
-        >
+        <div className={`withdrawal-new-card-content ${ delCard && animate ? "animate" : "" }`} >
           <span
             className="w-n-c-arrow"
             onClick={() => [onHide(), setAnimate(false), setDelKey(null)]}
@@ -369,34 +377,20 @@ const NewCard = (props) => {
           </div>
         </div>
         {/* =============== SELECT BANK */}
-        <div className={`w-n-c-select-bank ${bankPicker ? "show" : ""}`}>
-          <div className="w-n-c-s-b-title">
-            <h3>选择开户银行</h3>
-          </div>
-          <div className="w-n-c-s-b-content">
-            <div className="w-n-c-s-b-body">
-              {banks &&
-                map(banks, (obj, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className={`w-n-c-s-b-wrap ${
-                        tempBank === obj ? "select" : ""
-                      }`}
-                      onClick={() => setTempBank(obj)}
-                    >
-                      {obj}
-                    </div>
-                  );
-                })}
+      </div>
+      <div className="withdrawal-new-card-overlay" />
+      <UIAlertSA onClose={() => null} shown={bankPicker}>
+        <div className={`game-sa-overlay picker-over`}>
+          <div className="picker-container">
+            <div className="picker-head">
+              <p>选择开户银行</p>
             </div>
+            <PickerWrap banks={banks} />
           </div>
-          <div className="w-n-c-s-b-footer">
-            <button className="cancel" onClick={() => toggleBankPicker(false)}>
-              取消
-            </button>
+          <div className="picker-footer">
+            <button onClick={() => toggleBankPicker(false)}>取消</button>
             <button
-              className="determine"
+              className="active"
               onClick={() => [
                 onSelect({ name: "bank_type", value: tempBank }),
                 toggleBankPicker(false),
@@ -406,8 +400,7 @@ const NewCard = (props) => {
             </button>
           </div>
         </div>
-      </div>
-      <div className="withdrawal-new-card-overlay" />
+      </UIAlertSA>
     </div>
   );
 };

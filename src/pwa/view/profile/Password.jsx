@@ -165,7 +165,7 @@ const PasswordRegular = ({ setStatus }) => {
       <div className="submit">
         <div
           className={`form-button ${active && "form-button-active"}`}
-          onClick={update}
+          onClick={active ? update : null}
         >
           <span>提交</span>
         </div>

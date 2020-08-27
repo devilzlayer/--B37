@@ -38,7 +38,7 @@ const Deposit = () => {
 	}, [ auth, account, noback, history ]);
 
     
-	return  <Wrap className="profile-deposit" name="马上提款" isLoading={true}></Wrap>
+	return  <Wrap className="profile-deposit" name="马上充值" isLoading={true}></Wrap>
 	// return null;
 
 	// return (

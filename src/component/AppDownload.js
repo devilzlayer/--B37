@@ -1,44 +1,43 @@
-import React from 'react';
+import React from "react";
 
-import { BlockHead } from '../component/';
+import { BlockHead } from "../component/";
 
-import '../assets/scss/AppDownload.scss';
+import "../assets/scss/AppDownload.scss";
 
-function AppDownload () {
+function AppDownload() {
+  return (
+    <div className="app-download">
+      <div className="app-download-inner">
+        <div className="app-d-col app-download-content">
+          <div className="app-d-head head-block">
+            <div className="head-title">
+              U<span>体育</span>
+            </div>
+            <div className="head-sub">APP DOWNLOAD</div>
+            <div className="head-text">
+              原生体育APP，便捷登录、操作简单、界面一目了然、游戏畅通无阻、酷炫玩法全覆盖，指尖体育APP精彩无处不在。
+            </div>
+          </div>
+          <div className="app-d-body">
+            <div className="app-d-b-item">
+              <div className="app-d-b-image"></div>
+              <div className="app-d-b-text">扫描进入下载页面</div>
+              <div className="app-d-b-link">www.ubet8866.app</div>
+            </div>
+            <div className="app-d-b-item">
+              <div className="app-d-b-image"></div>
+              <div className="app-d-b-text">手机免下载访问</div>
+              <div className="app-d-b-link">www.ubet8866.com</div>
+            </div>
+          </div>
+        </div>
+        <div className="app-d-col app-download-image">
+          {/* <div className="app-d-image left"/> */}
+          <div className="app-d-image front" />
+          {/* <div className="app-d-image right"/> */}
+        </div>
 
-	return (
-		<div className="app-download">
-			<div className="app-download-inner">
-				<div className="app-d-col app-download-content">
-					<div className="app-d-head head-block">
-						<div className="head-title">U<span>体育</span></div>
-						<div className="head-sub">APP DOWNLOAD</div>
-						<div className="head-text">
-							原生体育APP，便捷登录、操作简单、界面一目了然、游戏畅通无阻、酷炫玩法全覆盖，指尖体育APP精彩无处不在。
-						</div>
-					</div>
-					<div className="app-d-body">
-						<div className="app-d-b-item">
-							<div className="app-d-b-image"></div>
-							<div className="app-d-b-text">扫描进入下载页面</div>
-							<div className="app-d-b-link">www.ubet8866.app</div>
-						</div>
-						<div className="app-d-b-item">
-							<div className="app-d-b-image"></div>
-							<div className="app-d-b-text">手机免下载访问</div>
-							<div className="app-d-b-link">www.ubet8866.com</div>
-						</div>
-					</div>
-				</div>
-				<div className="app-d-col app-download-image">
-					{/* <div className="app-d-image left"/> */}
-					<div className="app-d-image front"/>
-					{/* <div className="app-d-image right"/> */}
-				</div>
-
-
-
-				{/* <div className="app-download-head">
+        {/* <div className="app-download-head">
 					<BlockHead name="APP下载" text="APP download" />
 				</div>
 				<div className="app-download-body">
@@ -65,10 +64,9 @@ function AppDownload () {
 						</div>
 					</div>
 				</div> */}
-			</div>
-		</div>
-	);
-
+      </div>
+    </div>
+  );
 }
 
 export default AppDownload;

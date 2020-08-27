@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Ticker from 'react-ticker';
-
+import { map , head , sortBy , reverse } from 'lodash'
 import { Promotions } from '../service/';
 // import TickerOver from '../component/TickerOver';
 import TickerOver from '../component/TickerOver'
@@ -15,17 +15,37 @@ function NewsTicker (props) {
 		news: [],
 	});
 
+
+	useEffect(() =>{
+		document.body.classList.remove("no-scroll");
+		if(tickerOver){
+		  document.body.classList.add("no-scroll");
+		} 
+	  }, [tickerOver])
+
 	useEffect(() => {
 
-		const q = Promotions.getAnnouncements({ num: 1 });
+		const q = Promotions.getAnnouncements({ num: 999 });
 
 		q.promise.then(r => {
 
-			setTicker(t => ({
-				...t,
-				text: r.info.map(n => n.content).join(' '),
-				news: r.info.map(n => ({ title: n.content, text: n.edit_time })),
-			}));
+			if(r.info){
+				const sortDate = sortBy(r.info, (obj )=>{
+					return obj.edit_time
+				})
+				
+				const headNews = head(sortDate)
+				setTicker({
+					text : headNews.content,
+					news : reverse(sortDate)
+				})
+			}
+
+				// setTicker(t => ({
+				// 	...t,
+				// 	text: r.info.map(n => n.content).join(' '),
+				// 	news: r.info.map(n => ({ title: n.content, text: n.edit_time })),
+				// }));
 
 		}, e => {
 
@@ -38,6 +58,7 @@ function NewsTicker (props) {
 		return () => q.cancel();
 
 	}, []);
+	
 
 	return (
 		<>

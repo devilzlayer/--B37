@@ -68,6 +68,13 @@ export default {
       ...params,
     }),
 
+  retrievePassword: (params) =>
+    api.post("newpwa/ajax_datav2.php", {
+      auth: getAuthKey(),
+      type: 'retrieve_password',
+      ...params,
+    }),
+
   setFundsPassword: (params) =>
     api.post("newpwa/center.php/index.php", {
       submit_type: "set_moneypwd",

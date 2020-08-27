@@ -7,10 +7,10 @@ import { Promotions as Service } from '../service/';
 
 import '../assets/scss/Promotions.scss';
 
-function Promotion () {
+function Promotion() {
 
 	const container = useRef(null);
-	const [ promotion, setPromotion ] = useState(null);
+	const [promotion, setPromotion] = useState(null);
 
 	const { id } = useParams();
 
@@ -36,33 +36,23 @@ function Promotion () {
 
 			setPromotion(r.info);
 
-		}, e => {});
+		}, e => { });
 
 		return () => req.cancel();
 
-	}, [ id ]);
+	}, [id]);
 
 	return (
 		<StickyProvider>
 			<div className="promotions single" ref={container}>
-				<div className="decor-n0"></div>
-				<div className="decor-n1"></div>
 				<div className="promotions-flex-wrap">
-					<Sticky container={container} defaultOffsetTop={180} overflowScroll="end" stickyProps={{ className: 'decor-n2' }}>
-						<div></div>
-					</Sticky>
 					<div className="promotions-inner">
 						{promotion ? (
-							<div className="banner">
-								<div className="banner-inner">
-									<p dangerouslySetInnerHTML={{ __html: promotion }}></p>
-								</div>
+							<div className="banner-info">
+								<p dangerouslySetInnerHTML={{ __html: promotion }}></p>
 							</div>
 						) : null}
 					</div>
-					<Sticky container={container} defaultOffsetTop={180} overflowScroll="end" stickyProps={{ className: 'decor-n3' }}>
-						<div></div>
-					</Sticky>
 				</div>
 			</div>
 		</StickyProvider>

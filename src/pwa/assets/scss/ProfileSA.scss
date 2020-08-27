@@ -161,15 +161,20 @@
         color: #fff;
         font-size: 15px;
         display: flex;
+        padding-left: 30px;
         i {
           width: 26px;
-          height: 20px;
+          height: 28px;
           margin-right: 5px;
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center center;
           display: inline-block;
-          background-image: url(../img/profile/svg/vip.svg);
+          background-image: url(../../../assets/img/vip/icons/vip-icon_mob.svg);
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
         }
       }
     }
@@ -307,7 +312,7 @@
     padding: 10px 20px;
     padding-bottom: 77px;
     padding-top: 319px; ///// ADD
-    &.not{
+    &.not {
       padding-top: 250px;
     }
     .ui-tabs {
@@ -375,6 +380,18 @@
         }
         &.feedback i {
           background-image: url(../img/profile/svg/feedback.svg);
+        }
+        &.qr i {
+          background-image: url(../img/profile/svg/affiliate-marketing-tool.svg);
+        }
+        &.agent-report i {
+          background-image: url(../img/profile/svg/affiliate-report.svg);
+        }
+        &.comission i {
+          background-image: url(../img/profile/svg/affiliate-commission.svg);
+        }
+        &.members i {
+          background-image: url(../img/profile/svg/affiliate-members.svg);
         }
 
         p {
@@ -496,7 +513,6 @@
         position: relative;
         border: 2px solid #c9ccd3;
         border-radius: 50%;
-        position: relatice;
       }
       .select-image:before {
         width: 28px;
@@ -1414,6 +1430,7 @@
 
 .profile-password {
   height: 100%;
+  touch-action: none;
 
   .fields {
     .form-field {
@@ -1539,6 +1556,7 @@
 
 .profile-general {
   height: 100%;
+  touch-action: none;
 
   .form-field {
     font-size: 14px;
@@ -1642,7 +1660,8 @@
 }
 
 .profile-birthdate {
-  height: 100vh;
+  height: 90vh;
+  touch-action: none;
 
   .picker-body {
     font-size: 14px;
@@ -2351,12 +2370,17 @@
           -webkit-text-fill-color: transparent;
         }
         i {
-          background: url(../img/profile/svg/correct.svg) no-repeat center
-            center/contain;
+          background: url(../img/profile/svg/correct.svg) no-repeat center center/contain;
           width: 24px;
           height: 24px;
           margin-right: 12px;
         }
+      }
+      .game-transfer-p {
+        font-size: 14px;
+        color: #39404d;
+        margin: 30px 0 0;
+        text-align: center;
       }
       .form-body {
         padding: 26px 18px;
@@ -2384,6 +2408,13 @@
       .picker-highlight:before {
         background-color: #dfebef !important;
       }
+    }
+  }
+
+  .ui-alert-sa {
+    &.shown {
+      // touch-action: none;
+      position: fixed;
     }
   }
 }
@@ -2701,8 +2732,10 @@
         border-top-right-radius: 20px;
         padding: 17px 23px;
         transition: all 0.5s ease-in-out;
+        z-index: 1;
         &.animate {
           bottom: 0 !important;
+          z-index: 2;
         }
         &.hide {
           display: none;
@@ -2837,7 +2870,7 @@
         }
 
         .w-n-c-del-wrap {
-          max-height: 490px;
+          max-height: 496px;
           overflow: auto;
           margin-right: -23px;
           margin-left: -23px;
@@ -2951,12 +2984,12 @@
                     no-repeat center center/cover;
                 }
                 &.招商银行 {
-                  background: url(../img/profile/cards/招商银行.svg)
-                    no-repeat center center/cover;
+                  background: url(../img/profile/cards/招商银行.svg) no-repeat
+                    center center/cover;
                 }
                 &.交通银行 {
-                  background: url(../img/profile/cards/交通银行.svg)
-                    no-repeat center center/cover;
+                  background: url(../img/profile/cards/交通银行.svg) no-repeat
+                    center center/cover;
                 }
               }
               .del-bank-number {
@@ -2975,81 +3008,6 @@
           }
         }
       }
-
-      .w-n-c-select-bank {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 328px;
-        width: 100%;
-        text-align: center;
-        display: none;
-        &.show {
-          display: block;
-        }
-        .w-n-c-s-b-title {
-          background-image: linear-gradient(#c3cfe2, #f5f7fa);
-          border-top-left-radius: 15px;
-          border-top-right-radius: 15px;
-          padding: 14.6px 0;
-          h3 {
-            font-size: 14px;
-            font-weight: normal;
-            margin: auto;
-            color: #08b1f9;
-            background: linear-gradient(-46deg, #04a0f9, #08b1f9);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
-        }
-        .w-n-c-s-b-content {
-          background: #ffffff;
-          border-bottom-left-radius: 15px;
-          border-bottom-right-radius: 15px;
-          // padding: 20px 0;
-          .w-n-c-s-b-body {
-            max-height: 255px;
-            height: 100%;
-            overflow: auto;
-            padding: 20px;
-          }
-          .w-n-c-s-b-wrap {
-            font-size: 11px;
-            color: #acadaf;
-            margin-bottom: 10px;
-            &.select {
-              font-size: 14px;
-              color: #39404d;
-              box-shadow: 0 0 21px 0px rgba(0, 0, 0, 0.2);
-              border-radius: 5px;
-              padding: 15.4px 0;
-            }
-          }
-        }
-
-        .w-n-c-s-b-footer {
-          margin-top: 10px;
-          button {
-            display: inline-block;
-            width: 160px;
-            border-radius: 5px;
-            color: #fff;
-            padding: 16.4px 0;
-            margin-right: 8px;
-            &:last-child {
-              margin: 0;
-            }
-            &.cancel {
-              background: linear-gradient(90deg, #cbcdcd, #dededc);
-            }
-            &.determine {
-              background: linear-gradient(90deg, #08b1f9, #04a0f9);
-            }
-          }
-        }
-      }
     }
 
     .withdrawal-new-card-overlay {
@@ -3060,6 +3018,80 @@
       height: 100%;
       z-index: 799;
       background: rgba(0, 0, 0, 0.6);
+    }
+
+    .game-sa-overlay {
+      width: 328px;
+      @media screen and (max-width: 345px) {
+        width: 310px;
+      }
+
+      &.picker-over {
+        .picker-container {
+          background: #fff;
+          border-radius: 15px;
+          margin-bottom: 7px;
+          overflow: hidden;
+          font-size: 14px;
+          .picker-highlight {
+            border-radius: 5px;
+            box-shadow: 0 1px 24px rgba(0, 0, 0, 0.06);
+            &::before {
+              height: 0;
+            }
+            &::after {
+              height: 0;
+            }
+          }
+        }
+        .picker-head {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(#c3cfe2, #f5f7fa);
+          height: 50px;
+
+          p {
+            color: #04a0f9;
+            @include font(14px, 500, 26px);
+            background: linear-gradient(-46deg, #04a0f9, #08b1f9);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+        .picker-footer {
+          display: flex;
+          justify-content: space-between;
+          button {
+            background-image: linear-gradient(#bbbcbc, #ebebe8);
+            border-radius: 5px;
+            width: 48%;
+            height: 50px;
+            color: #fff;
+            @include font(14px, 400, 29px);
+            &.active {
+              background-image: linear-gradient(#04a0f9, #08b1f9);
+            }
+          }
+        }
+        .picker-wrap {
+          padding: 20px;
+        }
+      }
+
+      .picker-item {
+        color: #8e9bae !important;
+      }
+      .picker-item-selected {
+        color: #55687d !important;
+      }
+      .picker-container {
+        .picker-highlight:after,
+        .picker-highlight:before {
+          background-color: #dfebef !important;
+        }
+      }
     }
   }
 
@@ -3149,8 +3181,7 @@
           -webkit-text-fill-color: transparent;
         }
         i {
-          background: url(../img/profile/svg/correct.svg) no-repeat center
-            center/contain;
+          background: url(../img/profile/svg/correct.svg) no-repeat center center/contain;
           width: 24px;
           height: 24px;
           margin-right: 12px;

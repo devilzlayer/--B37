@@ -78,5 +78,4 @@ const About = () => {
 	);
 
 }
-
-export default About
+export default withAuth(About,1 );

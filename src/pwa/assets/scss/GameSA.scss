@@ -283,6 +283,13 @@
 				p {
 					color: #55687d;
 					@include font(19px, 500, 1.4);
+					
+				}
+				.game-transfer-p{
+					font-size: 14px;
+					color: #39404d;
+					margin: 20px 0 40px;
+					text-align: center;
 				}
 				.form-submit {
 					margin: 15px 0 0;
@@ -308,6 +315,12 @@
 							left: 0;
 							top: 50%;
 							transform: translateY(-50%);
+						}
+						&.hide{
+							&:before{
+								display: none;
+							}
+							padding: 0;
 						}
 					}
 				}

@@ -25,12 +25,6 @@
         background: none;
       }
       overflow: hidden;
-      // background: transparentize(#fff, .05) url(../../../assets/img/login/form-decor-pwa.png) no-repeat center top/100%;
-      // @include radius(10px);
-      // @include shadow(0 4px 16px rgba(42, 51, 84, 0.12));
-      @media screen and (min-width: 520px) {
-        // background-color: #fff;
-      }
     }
     &-inner {
       padding: 60px 20px 43px;

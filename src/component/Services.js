@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 import '../assets/scss/Services.scss';
 
@@ -9,13 +10,13 @@ function Services () {
 		<div className="services-inner">
 			<div className="services-items">
 				<div className="logo-wrap banner-1">
-					<div className="logo"></div>
+					<Link to="promotions" className="logo"></Link>
 				</div>
 				<div className="logo-wrap banner-2">
-					<div className="logo"></div>
+					<Link to="promotions" className="logo"></Link>
 				</div>
 				<div className="logo-wrap banner-3">
-					<div className="logo"></div>
+					<Link to="promotions" className="logo"></Link>
 				</div>
 			</div>
 		</div>

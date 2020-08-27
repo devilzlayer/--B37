@@ -186,8 +186,8 @@ function FormSignup(props) {
     }
     if (e.target.id === "password") {
       if (!userValid && user.password) {
-        if (user.password.length < 6) setPasswordValidity(1);
-        return null;
+        if (user.password.length < 6) return setPasswordValidity(1);
+        else return setPasswordValidity(0);
       } else {
         return setPasswordValidity(0);
       }
@@ -318,6 +318,7 @@ function FormSignup(props) {
             </p>
           ) : null}
           <FormField
+            isValid={!isValidPasswordok}
             field={{ label: "再次输入密码" }}
             input={{
               id: "passwordok",
@@ -337,6 +338,7 @@ function FormSignup(props) {
             </p>
           ) : null}
           <FormField
+            isValid={!isValidTelephone}
             field={{ label: "请输入手机号码" }}
             input={{
               id: "telephone",

@@ -60,7 +60,7 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    max-width: 450px;
+    min-width: 450px;
     width: 100%;
     height: 313px;
     content: "";
@@ -425,23 +425,23 @@
             }
           }
 
-          &:nth-child(2) {
-            .v-w-i-d-grid-col-text {
-              &:first-child {
-                background-color: #c2a788;
-              }
-              &.caption {
-                font-size: 16px;
-                span {
-                  padding-left: 28px !important;
-                  &:before {
-                    width: 24px !important;
-                    height: 24px !important;
-                  }
-                }
-              }
-            }
-          }
+          // &:nth-child(2) {
+          //   .v-w-i-d-grid-col-text {
+          //     &:first-child {
+          //       background-color: #c2a788;
+          //     }
+          //     &.caption {
+          //       font-size: 16px;
+          //       span {
+          //         padding-left: 28px !important;
+          //         &:before {
+          //           width: 24px !important;
+          //           height: 24px !important;
+          //         }
+          //       }
+          //     }
+          //   }
+          // }
           &.head {
             .v-w-i-d-grid-col-text {
               &.caption {
@@ -459,6 +459,7 @@
             flex: 1 1;
             text-align: center;
             padding: 12px 0;
+            
             &.caption {
               color: #fff;
               font-size: 12px;
@@ -472,10 +473,7 @@
                   span {
                     &:before {
                       content: "";
-                      background: url(../img/vip/icon/vip#{$i}.png)
-                        no-repeat
-                        center
-                        center/cover;
+                      background: url(../img/vip/icon/vip#{$i}.png)no-repeat center center/cover;
                       width: 16px;
                       height: 16px;
                       position: absolute;
@@ -486,7 +484,19 @@
                   }
                 }
               }
+              &.active{
+                background-color: #c2a788;
+                font-size: 16px;
+                span {
+                  padding-left: 28px !important;
+                  &:before {
+                    width: 24px !important;
+                    height: 24px !important;
+                  }
+                }
+              }
             }
+            
             &.value {
               font-size: 15px;
               color: #2e384d;
@@ -494,6 +504,7 @@
                 color: #c18e55;
               }
             }
+           
           }
         }
       }

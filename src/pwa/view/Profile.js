@@ -41,31 +41,23 @@ function Menu(props) {
 
   useEffect(() => {
     if(userData && userData.username){
-      const withAvatar = JSON.parse(localStorage.getItem("avatar"));
-      const URL = `https://u2daszapp.u2d8899.com/newpwa/memberimg/c${userData.username}6.jpg`;
-      // console.log(URL);
-      if (withAvatar) {
-        checkImage(
-          withAvatar,
-          function () {
-            setCustomURL(withAvatar);
-          },
-          function () {
-            setCustomURL(URL);
-          }
-        );
-      } else {
-        checkImage(
-          URL,
-          function () {
-            setCustomURL(URL);
-          },
-          function () {
-            setCustomURL("");
-          }
-        );
-      }
+      const response = Transaction.read({
+        ...User.read(),
+        type: "get_imgurl",
+      });
+      response.promise.then(r => {
+        // console.log(r)
+        if(r.info){
+          const URL = `https://u2daszapp.u2d8899.com/newpwa/${r.info}`;
+          setCustomURL(URL);
+        }
+        
+      }, e =>{
+        console.log('No Image found')
+      })
+
     }
+    
   }, [customURL]);
 
 
@@ -279,7 +271,7 @@ function Menu(props) {
                 <div className="profile-sa-hr" />
 
                 <div className="profile-sa-widget-list">
-                  <Link className="profiel-sa-widget-item" to={"/profile/deposit?a=1"} onClick={onClick}>
+                  <Link className="profiel-sa-widget-item" to={"/profile/deposit?a=1"} onClick={onClick} target="_blank">
                     <i className="topup" />
                     <span>充值</span>
                   </Link>
@@ -319,25 +311,12 @@ function Menu(props) {
           <MenuItem className="n feedback" to="/feedback" name="意见反馈" />
           {userAuth.data && userAuth.data.is_agent === "1" ? (
             <>
-              <MenuItem
-                className="n11"
-                to="/profile/agency/qr"
-                name="代理推广"
+              <MenuItem className="n11 qr" to="/profile/agency/qr" name="代理推广"
               />
-              <MenuItem
-                className="n12"
-                to="/profile/agency/agent-report"
-                name="代理商报告"
+              <MenuItem className="n12 agent-report" to="/profile/agency/agent-report" name="代理商报告"
               />
-              <MenuItem
-                className="n13"
-                to="/profile/agency/comission-report"
-                name="佣金报告"
-              />
-              <MenuItem
-                className="n14"
-                to="/profile/agency/members"
-                name="会员名单"
+              <MenuItem className="n13 comission" to="/profile/agency/comission-report" name="佣金报告" />
+              <MenuItem className="n14 members " to="/profile/agency/members" name="会员名单"
               />
             </>
           ) : null}
@@ -416,14 +395,8 @@ function Profile() {
       {userAuth.data && userAuth.data.is_agent === "1" ? (
         <>
           <Route path="/profile/agency/qr" component={Section.QR} />
-          <Route
-            path="/profile/agency/agent-report"
-            component={Section.AgentReport}
-          />
-          <Route
-            path="/profile/agency/comission-report"
-            component={Section.ComissionReport}
-          />
+          <Route path="/profile/agency/agent-report" component={Section.AgentReport} />
+          <Route path="/profile/agency/comission-report" component={Section.ComissionReport}/>
           <Route path="/profile/agency/members" component={Section.Members} />
         </>
       ) : null}

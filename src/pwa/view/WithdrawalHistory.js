@@ -126,9 +126,9 @@ const WithdrawalHistory = () => {
 
       response.promise.then(
         (result) => {
-          // console.log(result);
+          console.log(result);
           if (result.status === 1) {
-            // setItems(result.info);
+            setItems(result.info);
             setItems({
               status: 1,
               list: result.info.map((t) => ({
@@ -201,7 +201,7 @@ const WithdrawalHistory = () => {
     return filter(items.list, (t) => t.ts >= from && t.ts < to);
   }, [items.list, customRange, range]);
 
-  // console.log(__withdraws)
+  // console.log(items.list > 0)
 
   return (
     <Wrap
@@ -224,8 +224,8 @@ const WithdrawalHistory = () => {
 
             <div className="withdrawal-history-card-body">
               {/* ITEM */}
-              {__withdraws && __withdraws.length > 0 ? (
-                map(__withdraws, (obj, i) => {
+              {items.list ? (
+                map(items.list, (obj, i) => {
                   return (
                     <CardItem
                       obj={obj}

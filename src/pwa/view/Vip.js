@@ -133,9 +133,7 @@ const Vip = () => {
               {map(vipSlideValue, (obj, i) => (
                 <div key={i} className="vip-wrap-inner-width">
                   <div
-                    className={`vip-wrap-inner-vip-banner vip-banner${i} ${
-                      vipLevel > i ? "unlocked" : null
-                    }`}
+                    className={`vip-wrap-inner-vip-banner vip-banner${i} ${vipCount >= i ? `unlocked` : null}`}
                   />
                 </div>
               ))}
@@ -242,7 +240,7 @@ const Vip = () => {
                     )}
                     <div className="vip-section-item">
                       <div className="vip-s-i-title">
-                        <h2>VIP特权</h2>
+                        <h2>VIP优惠</h2>
 
                         <div className="vip-s-i-body">
                           <div className="vip-s-i-body-cont-box">

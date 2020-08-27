@@ -34,6 +34,7 @@ function Game() {
   const { id, name } = useParams();
   const isExternal = externals.includes(+id);
 
+  const [message , setMessage] = useState({});
   const [iframe, setIframe] = useState(null);
   const [iframeI, setIframeI] = useState(0);
 
@@ -210,7 +211,7 @@ function Game() {
   const setAmount = (e) => {
     // console.log(e.target.validity.valid);
 
-    const amount = e.target.value;
+    const amount = e.target ? e.target.value : e;
     const percent = +BigNumber((amount / userAuth.data.balance) * 100).toFixed(
       0
     );
@@ -260,14 +261,22 @@ function Game() {
           `You have successfully transferred ${balanceForm.amount} ¥ from ${_from.game.name} to ${_to.game.name}: ${r.info}`
         );
 
+        setMessage({
+          title: '转账成功',
+          valid: true,
+        })
         setBalanceLoad(false);
 
         setBalanceTransferred(true);
       },
       (e) => {
         console.error(e);
-
+        setMessage({
+          title : '系统提示',
+          message: e,
+        })
         setBalanceLoad(false);
+        setBalanceTransferred(true);
       }
     );
   };
@@ -290,6 +299,17 @@ function Game() {
       ...User.read(),
     }).promise.then((r) => setUserAuthFN(1, r.info));
   };
+
+
+  const onlyNumbers = (e) => {
+    const { value } = e.currentTarget
+    let regexp  = /^[0-9\b]+$/
+    if (!value || regexp.test(value)) {
+      setAmount(value);
+    }
+
+  };
+
 
   return (
     <div
@@ -332,6 +352,7 @@ function Game() {
           </button>
         </div>
       </div>
+      {/* =================================== IFRAME =================================== */}
       <div className="game-sa-content">
         {iframe ? (
           <iframe
@@ -342,24 +363,22 @@ function Game() {
           ></iframe>
         ) : null}
       </div>
+      {/* =================================== IFRAME =================================== */}
+
       <div className={`game-sa-overlay${overlayState ? " shown" : ""}`}>
         <div className="overlay-sublayer" ref={refClickOut}>
-          <div
-            className={`overlay-layer with-loader${
-              balanceLoad ? " loading" : ""
-            }`}
-          >
+          <div className={`overlay-layer with-loader${balanceLoad ? " loading" : ""}`}>
             <div className="load-spin"></div>
             {balanceTransferred ? (
               <div className="form response">
                 <div className="form-head not-message">
-                  <h2>转账成功</h2>
+                  <h2 className={!message.valid ? 'hide' : ''}>{message.title}</h2>
                   <button className="close" onClick={finishTransfer}>
                     <Icon name="close-circle-sharp" />
                   </button>
                 </div>
                 <div className="form-body not-message">
-                  {/* <p>转移成功!</p> */}
+                  {message.message && <p className="game-transfer-p">{message.message}</p>}
                   <div className="form-submit">
                     <button onClick={finishTransfer}>确认</button>
                   </div>
@@ -377,25 +396,6 @@ function Game() {
                   </button>
                 </div>
                 <div className="form-body">
-                  {/*<div className="form-field">
-									<label>推出</label>
-									<div className="input--wrap with-dot">
-										<div className={`input-like${balanceForm.from ? ' has-value' : ''}`} onClick={e => setBalanceOver('from')}>{balanceForm.from || '推出'}</div>
-									</div>
-								</div>
-								<div className="form-field">
-									<label>进入</label>
-									<div className="input--wrap with-dot">
-										<div className={`input-like${balanceForm.to ? ' has-value' : ''}`} onClick={e => setBalanceOver('to')}>{balanceForm.to || '进入'}</div>
-									</div>
-								</div>
-								<div className="form-field">
-									<label htmlFor="amount">金额</label>
-									<div className="input--wrap">
-										<input id="amount" type="text" placeholder="金额" pattern="[0-9]*" onChange={e => setAmount(e)} />
-									</div>
-								</div>*/}
-
                   <div className="form-body-wrap">
                     <div className="form-field transfer-wrap">
                       <div className="transfer--item">
@@ -459,11 +459,11 @@ function Game() {
                       <div className="input--wrap">
                         <input
                           id="amount"
-                          type="number"
+                          type="text"
                           placeholder="0.00"
                           pattern="[0-9]*"
                           value={balanceForm.amount}
-                          onChange={(e) => setAmount(e)}
+                          onChange={(e) => onlyNumbers(e)}
                         />
                       </div>
                     </div>
@@ -477,9 +477,7 @@ function Game() {
           </div>
         </div>
       </div>
-      <div
-        className={`game-sa-overlay picker-over${balanceOver ? " shown" : ""}`}
-      >
+      <div className={`game-sa-overlay picker-over${balanceOver ? " shown" : ""}`}>
         <div className="picker-container">
           <div className="picker-head">
             <button onClick={(e) => setBalanceOver(null)}>取消</button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { map } from "lodash";
@@ -9,13 +9,17 @@ import "../assets/scss/Vip.scss";
 import { vipTitles, vipVal } from "./vip/values";
 import { withAuth } from "../util/";
 
+import { User , Transaction} from "../../service";
+
 const Vip = () => {
   // const history 	= useHistory();
+
 
   // const [ vipPrivilege ,setVipPrivilege ] = useState(true)
   const [roll, setRoll] = useState(0);
   const [tab, setTab] = useState(1);
 
+  const [vipLvl, setVipLvl]   = useState(0);
   const [vipList, setVipList] = useState(vipVal);
 
   const checkScrollTop = () => {
@@ -26,6 +30,21 @@ const Vip = () => {
       setRoll(false);
     }
   };
+
+  useEffect(() =>{
+    const response = Transaction.read({
+      ...User.read(),
+      type: "get_vip_level",
+    });
+
+    response.promise.then((r) => {
+        console.log(r)
+        const vlvp = Number(r.info.viplevel);
+        setVipLvl(vlvp)
+    },(e) => {
+        // console.log(e)
+    });
+  },[])
 
   window.addEventListener("scroll", checkScrollTop);
 
@@ -67,7 +86,7 @@ const Vip = () => {
                   <div key={i} className="v-w-i-d-grid-item">
                     <div
                       key={i}
-                      className={`v-w-i-d-grid-col-text caption  vip-icon${i}`}
+                      className={`v-w-i-d-grid-col-text caption  vip-icon${i} ${vipLvl == i ? 'active' : ''}`}
                     >
                       <span>V{i}</span>
                     </div>
@@ -90,7 +109,7 @@ const Vip = () => {
               })}
           </div>
 
-          <div className="vip-wrap-inner-details-title">返水与比例</div>
+          <div className="vip-wrap-inner-details-title">条款与规则</div>
 
           <div className="vip-wrap-inner-details-list-box">
             <div className="vip-inner-details-list">

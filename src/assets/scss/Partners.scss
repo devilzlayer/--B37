@@ -1,6 +1,6 @@
 @import '_mixin';
 
-$wrap-width: 1400px;
+$wrap-width: 1200px;
 $side-padding: 40px;
 
 .partners {
@@ -11,7 +11,7 @@ $side-padding: 40px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: $wrap-width + ($side-padding * 2);
+		width: $wrap-width;
 		margin: 0 auto;
 		padding: 32px $side-padding;
 	}

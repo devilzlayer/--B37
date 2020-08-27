@@ -37,8 +37,8 @@ function UserSA() {
     return () => q.cancel();
   }, []);
 
-  const UserLink = ({ name, to, className, count }) => (
-    <Link to={to} className={`link-${className}`} onClick={onClick}>
+  const UserLink = ({ name, to, className, count , target  }) => (
+    <Link to={to} className={`link-${className}`} onClick={onClick} target={target} >
       <i>
       {count ? <span className="count">{count}</span> : null}
 
@@ -89,7 +89,7 @@ function UserSA() {
         }
         <div className="user-sa-hr" />
         <div className="user-sa-links">
-          <UserLink name="充值" to="/profile/deposit?a=1" className="deposit" />
+          <UserLink name="充值" to="/profile/deposit?a=1" className="deposit" target="_blank"/>
           <UserLink name="转账" to="/profile/transfer" className="transfer" />
           <UserLink name="提款" to="/profile/withdraw" className="debit" />
           <UserLink
