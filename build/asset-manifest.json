@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/static/css/main.14640821.chunk.css",
-    "main.js": "/static/js/main.51f0907a.chunk.js",
-    "main.js.map": "/static/js/main.51f0907a.chunk.js.map",
+    "main.js": "/static/js/main.77c3097e.chunk.js",
+    "main.js.map": "/static/js/main.77c3097e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.31b08438.js",
     "runtime-main.js.map": "/static/js/runtime-main.31b08438.js.map",
     "static/css/2.047c6635.chunk.css": "/static/css/2.047c6635.chunk.css",
-    "static/js/2.63615a8d.chunk.js": "/static/js/2.63615a8d.chunk.js",
-    "static/js/2.63615a8d.chunk.js.map": "/static/js/2.63615a8d.chunk.js.map",
+    "static/js/2.6f69dde6.chunk.js": "/static/js/2.6f69dde6.chunk.js",
+    "static/js/2.6f69dde6.chunk.js.map": "/static/js/2.6f69dde6.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.d530b4da2129d4d89dee753b3fe7385a.js": "/precache-manifest.d530b4da2129d4d89dee753b3fe7385a.js",
+    "precache-manifest.5c2829d985978abbe300167bb50f153a.js": "/precache-manifest.5c2829d985978abbe300167bb50f153a.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.047c6635.chunk.css.map": "/static/css/2.047c6635.chunk.css.map",
     "static/css/main.14640821.chunk.css.map": "/static/css/main.14640821.chunk.css.map",
-    "static/js/2.63615a8d.chunk.js.LICENSE.txt": "/static/js/2.63615a8d.chunk.js.LICENSE.txt",
+    "static/js/2.6f69dde6.chunk.js.LICENSE.txt": "/static/js/2.6f69dde6.chunk.js.LICENSE.txt",
     "static/media/Nav.scss": "/static/media/unnamed.ad50df98.png",
     "static/media/ProfileSA.scss": "/static/media/沙巴体育.09aff01a.png",
     "static/media/Dashboard.scss": "/static/media/沙巴体育.aa5b401b.png",
@@ -59,8 +59,8 @@
   "entrypoints": [
     "static/js/runtime-main.31b08438.js",
     "static/css/2.047c6635.chunk.css",
-    "static/js/2.63615a8d.chunk.js",
+    "static/js/2.6f69dde6.chunk.js",
     "static/css/main.14640821.chunk.css",
-    "static/js/main.51f0907a.chunk.js"
+    "static/js/main.77c3097e.chunk.js"
   ]
 }
