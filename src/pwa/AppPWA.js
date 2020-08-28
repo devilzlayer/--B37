@@ -112,6 +112,7 @@ const AppPWA = () => {
           <Route exact path="/vip" component={Views.Vip} />
           <Route exact path="/vip-details" component={Views.VipDetails} />
           <Route exact path="/restore" component={Views.Restore} />
+          
           <Redirect to="/" />
         </Switch>
         {userAuth.modal && 
