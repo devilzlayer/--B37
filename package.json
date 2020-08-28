@@ -13,6 +13,7 @@
     "click-outside-hook": "^1.1.0",
     "js-md5": "^0.7.3",
     "lodash": "^4.17.20",
+    "mobile-device-detect": "^0.4.3",
     "moment": "^2.27.0",
     "node-sass": "^4.13.1",
     "query-string": "^6.11.1",

@@ -1,5 +1,7 @@
 import React, { useState, useContext, useCallback, useRef } from "react";
 import moment from "moment";
+//import { deviceDetect } from 'mobile-device-detect';
+//import DeviceInfo from 'react-native-device-info';
 import { Link } from "react-router-dom";
 import { mobileModel } from "react-device-detect";
 import { Wrap, Service } from "./";
