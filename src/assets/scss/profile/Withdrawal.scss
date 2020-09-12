@@ -468,6 +468,9 @@
           font-size: 14px;
           color: #39404d;
           margin-bottom: 30px;
+          &.wcwc-nofound{
+            text-align: center;
+          }
         }
         .wcwc-form {
           .wcwc-form-field {

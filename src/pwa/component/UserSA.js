@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import cx from "classnames";
 
 import { User, Inbox } from "../../service/";
+import { TRANSLATE } from '../../options'
 
 import "../assets/scss/UserSA.scss";
 
@@ -43,7 +44,7 @@ function UserSA() {
       {count ? <span className="count">{count}</span> : null}
 
       </i>
-      <span>{name}</span>
+      <span>{TRANSLATE(name)}</span>
     </Link>
   );
 
@@ -79,7 +80,7 @@ function UserSA() {
             role="button"
             onClick={() => refreshBalance()}
           >
-            <span>中心:&nbsp;</span>
+            <span>{TRANSLATE('中心')}:</span>
             <p>
               <span>￥</span>
               {userAuth.data.balance}

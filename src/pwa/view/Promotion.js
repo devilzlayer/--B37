@@ -6,6 +6,7 @@ import { Promotions as Service } from "../../service/";
 import { Icon } from "../../component/";
 
 import "../assets/scss/PromotionsSA.scss";
+import { TRANSLATE } from "../../options";
 
 function Promotion() {
   const [promotion, setPromotion] = useState(null);
@@ -48,7 +49,7 @@ function Promotion() {
           </Link>
         </div>
         <div className="promotions-sa-title">
-          <h1>促销活动</h1>
+          <h1>{TRANSLATE('促销活动')}</h1>
         </div>
       </div>
       <div className="promotions-sa-content single">

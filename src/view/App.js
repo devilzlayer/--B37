@@ -38,8 +38,15 @@ function App() {
     modal: false,
   });
 
-  const setUserAuthFN = (status, data, modal) =>
-    setUserAuth({ status, data, modal });
+  useEffect(() =>{
+    const LANG = localStorage.getItem('lang')
+    if(LANG){
+      const doc = document.documentElement
+      doc.lang = LANG
+    }
+  },[])
+
+  const setUserAuthFN = (status, data, modal) => setUserAuth({ status, data, modal });
 
   const windowDimensions = useWindowDimensions();
   return (

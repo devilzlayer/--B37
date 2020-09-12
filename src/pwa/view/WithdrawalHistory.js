@@ -13,6 +13,9 @@ import { User, Transaction } from "../../service";
 import { toDate } from "../../util";
 import { withAuth } from "../util/";
 
+import {  TRANSLATE } from '../../options'
+
+
 const CardItem = (props) => {
   // console.log(props)
   const {
@@ -80,18 +83,18 @@ const CardItem = (props) => {
       <div className="cl-item withdrawal-history-card-value">
         {cancel && (
           <span className="cancel" onClick={() => props.onCancel(obj)}>
-            取消提款
+            {TRANSLATE('取消提款')}
           </span>
         )}
         <p className="cl-card-amount">
-          金额: <span>{value}</span>
+          {TRANSLATE('金额')}: <span>{value}</span>
         </p>
         <p className={`cl-card-status ${classStatus}`}>
           <span>
-            {statusText}
+            {TRANSLATE(statusText)}
             {fail && (
               <span className="fail" onClick={() => onSetKey(index)}>
-                {setKey === index && <span>{obj.verifyComment}</span>}
+                {setKey === index && <span>{TRANSLATE(obj.verifyComment)}</span>}
                 <i />
               </span>
             )}
@@ -214,7 +217,7 @@ const WithdrawalHistory = () => {
           <div className="withdrawal-history-card">
             <div className="withdrawal-history-card-head">
               <div className="withdrawal-history-card-title">
-                <span>最近30天</span>
+                <span>{TRANSLATE('最近30天')}</span>
                 <i
                   className={load ? "reload" : ""}
                   onClick={() => setLoad(true)}
@@ -244,7 +247,7 @@ const WithdrawalHistory = () => {
               ) : (
                 <div className="no-transactions">
                   <div className="image-box" />
-                  <span>暂无记录</span>
+                  <span>{TRANSLATE('暂无记录')}</span>
                 </div>
               )}
             </div>

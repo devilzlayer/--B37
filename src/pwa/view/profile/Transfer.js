@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Picker from "react-mobile-picker";
 import cx from "classnames";
 import BigNumber from "bignumber.js";
-import{ map , findIndex , isNumber, toSafeInteger } from 'lodash'
+import{ map , find ,findIndex , isNumber, toSafeInteger } from 'lodash'
 import WheelPicker from 'react-simple-wheel-picker';
 
 import { Wrap } from "./";
@@ -10,6 +10,8 @@ import { Icon } from "../../../component/";
 import { UIAlertSA } from "../../component/";
 import { User, Game } from "../../../service/";
 import { withAuth } from "../../util";
+
+import { TRANSLATE} from '../../../options'
 
 import Wheel from './transfer/wheel'
 
@@ -139,23 +141,32 @@ const Transfer = () => {
   //     })
   // },[balances])
 
-  const onSetWheelValSelect = (dist) =>{
+  const onSetWheelValSelect = async (dist) =>{
 
     const thisWrap = document.querySelector(".wheelwrap ul");
     // console.log(thisWrap.childNodes)
-    let value 
-    map( thisWrap.childNodes , obj =>{
-      if(obj.ariaSelected == "true"){
-        value = obj.ariaLabel
+    let value = ''
+    await find( thisWrap.childNodes , obj =>{
+      if(obj.getAttribute('aria-selected') == "true"){
+        value =  obj.getAttribute('aria-label')
       }
       // console.log( obj.ariaLabel , obj.ariaSelected)
     })
 
-    // console.log(value)
-    // return false;
+    const findBalMap = find(balancesMap , obj =>{
+      const  { game : { name }} = obj
+      if(TRANSLATE(name) === value ){
+        return obj
+      }
+    })
+
+      // console.log(value , dist , balancesMap[value] && balancesMap[value].wallet , findBalMap )
+      // return false;
 
     if (dist === "from") {
       const _d = balancesMap[value].wallet ? "games" : "wallet";
+
+      console.log(_d)
 
       setBalances((b) => ({
         ...b,
@@ -181,34 +192,22 @@ const Transfer = () => {
     
     const selectedBal = findIndex(balances[dist] , obj => obj === balanceForm[dist])
 
+
+    useEffect(()=>{
+      const thisWrap = document.querySelector(".wheelwrap ul");
+      map( thisWrap.childNodes , obj =>{
+        map(obj.childNodes , obb =>{
+          obb.innerHTML = TRANSLATE(obb.innerHTML)
+        })
+      })
+    },[])
+
     return  <div className="picker-wrap">
               {
                 balances[dist].length  &&
                 <Wheel 
                   options={balances[dist]}
                   selected={selectedBal}
-                  onChange={(value) => {
-                    // console.log(value)
-                    if (dist === "from") {
-                      const _d = balancesMap[value].wallet ? "games" : "wallet";
-
-                      setBalances((b) => ({
-                        ...b,
-                        to: balancesFill[_d],
-                      }));
-
-                      setBalanceForm((bf) => ({
-                        ...bf,
-                        to: balancesFill[_d][0],
-                      }));
-                    }
-
-                    setBalanceForm((bf) => ({
-                      ...bf,
-                      [dist]: value,
-                    }));
-
-                  }}
                 />
 
               }
@@ -407,7 +406,7 @@ const Transfer = () => {
           <div className="form-field user-balance">
             <div className="user-balance-wrap wallet">
               <span className="user-balance-label">
-                <i /> 中心钱包
+                <i /> {TRANSLATE('中心钱包')}
               </span>
               <span className="user-balance-amount">
                 {BigNumber(userAuth.data.balance).toFormat(2)}
@@ -419,7 +418,7 @@ const Transfer = () => {
               onClick={!balanceLoad && !balanceTime ? wallet : null}
             >
               <i />
-              <span className="user-balance-label">一键回收</span>
+              <span className="user-balance-label">{TRANSLATE('一键回收')}</span>
             </div>
 
             {/* <i></i>
@@ -438,7 +437,7 @@ const Transfer = () => {
             <div className="form-field balances-list">
               {balancesRaw.map((balance, i) => (
                 <div key={i} className="balances-list--item">
-                  <div className="game-name">{balance.game.name}</div>
+                  <div className="game-name">{TRANSLATE(balance.game.name)}</div>
                   <div className="game-balance">
                     {BigNumber(balance.balance).toFormat(2)}
                   </div>
@@ -452,7 +451,7 @@ const Transfer = () => {
           <div className="form-field-section">
             <div className="form-field--doubler">
               <div className="form-field">
-                <label>推出</label>
+                <label>{TRANSLATE('推出')}</label>
                 <div className="input--wrap with-dot">
                   <div
                     className={cx("input-like", {
@@ -460,7 +459,7 @@ const Transfer = () => {
                     })}
                     onClick={(e) => setBalanceOver("from")}
                   >
-                    {balanceForm.from || "推出"}
+                    {TRANSLATE(balanceForm.from) || TRANSLATE('推出') }
                   </div>
                 </div>
               </div>
@@ -470,7 +469,7 @@ const Transfer = () => {
                 </button>
               </div>
               <div className="form-field">
-                <label>进入</label>
+                <label>{TRANSLATE('进入')}</label>
                 <div className="input--wrap with-dot">
                   <div
                     className={cx("input-like", {
@@ -478,7 +477,7 @@ const Transfer = () => {
                     })}
                     onClick={(e) => setBalanceOver("to")}
                   >
-                    {balanceForm.to || "进入"}
+                    {TRANSLATE(balanceForm.to) || TRANSLATE("进入")}
                   </div>
                 </div>
               </div>
@@ -504,7 +503,7 @@ const Transfer = () => {
                   <input
                     id="amount"
                     type="text"
-                    placeholder="金额"
+                    placeholder={TRANSLATE("金额")}
                     className={cx({ "has-value": balanceForm.amount })}
                     value={balanceForm.amount}
                     onChange={(e) => onlyNumbers(e)}
@@ -522,7 +521,7 @@ const Transfer = () => {
                   })}
                   onClick={() => setMax()}
                 >
-                  最大金额
+                  {TRANSLATE('最大金额')}
                 </button>
               </div>
             </div>
@@ -531,7 +530,7 @@ const Transfer = () => {
         </div>
         <div className="submit">
           <button className="button-stylized" onClick={transfer}>
-            立即转账
+            {TRANSLATE('立即转账')}
           </button>
         </div>
 
@@ -539,15 +538,15 @@ const Transfer = () => {
           <div className={`game-sa-overlay picker-over`}>
             <div className="picker-container">
               <div className="picker-head">
-                <p>{balanceOver === "from" ? "推出" : "进入"}</p>
+                <p>{  TRANSLATE(balanceOver === "from" ? "推出" : "进入")   }</p>
               </div>
               {balanceOver ? <PickerWrap dist={balanceOver} /> : null}
             </div>
             
             <div className="picker-footer">
-              <button onClick={(e) => setBalanceOver(null)}>取消</button>
+              <button onClick={(e) => setBalanceOver(null)}>{TRANSLATE('取消')}</button>
               <button className="active" onClick={(e) => onSetWheelValSelect(balanceOver)}>
-                确定
+                {TRANSLATE('确定')}
               </button>
             </div>
             
@@ -559,9 +558,9 @@ const Transfer = () => {
               <div className="form response">
                 <div className="form-head">
                 {message.valid && <i />}
-                <h2>{message.title}</h2>
+                <h2>{ TRANSLATE(message.title) }</h2>
                 </div>
-                {message.message && <p className="game-transfer-p">{message.message}</p>}
+                {message.message && <p className="game-transfer-p">{ TRANSLATE( message.message) }</p>}
                 <div className="form-body">
                   <button
                     onClick={() => {
@@ -569,7 +568,7 @@ const Transfer = () => {
                       setBalanceUpdateI((i) => i + 1);
                     }}
                   >
-                    确认
+                    {TRANSLATE('确认')}
                   </button>
                 </div>
               </div>

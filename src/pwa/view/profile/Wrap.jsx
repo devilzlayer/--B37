@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { LiveChatSA } from "../../component/";
 
+import {TRANSLATE } from '../../../options'
 const Wrap = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,17 +23,15 @@ const Wrap = (props) => {
         {props.sublevel && props.sublevel[0] ? (
           <button onClick={() => props.sublevel[1]()}>
             <div className="next-arrow" />
-            {props.sublevel[2] || name ? (
-              <span>{props.sublevel[2] || name}</span>
-            ) : null}
+            {props.sublevel[2] || name ? ( <span>{props.sublevel[2] || TRANSLATE(name) }</span> ) : null}
           </button>
         ) : (
           <Link to="/profile">
             <div className="next-arrow" />
-            <span>{name}</span>
+            <span>{TRANSLATE(name)}</span>
           </Link>
         )}
-        {centerName ? <div className="center-name">{centerName}</div> : null}
+        {centerName ? <div className="center-name">{TRANSLATE(centerName)}</div> : null}
         {faq ? (
           <div className="faq-button" onClick={() => setLiveChat(true)} />
         ) : null}

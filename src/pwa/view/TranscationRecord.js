@@ -7,12 +7,13 @@ import { Wrap } from '../view/profile/';
 import '../assets/scss/TransactionRecord.scss';
 
 import { withAuth } from "../util/";
+import { TRANSLATE } from '../../options'
 
 const TransactionItems = (props) =>{
 	const { to , name , className} = props
 	return 	<Link className={className} to={to}>
 				<i />
-				<p>{name}</p>
+				<p>{TRANSLATE(name)}</p>
 				<span/>
 			</Link>
 }

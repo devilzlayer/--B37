@@ -8,7 +8,7 @@ import { Wrap } from "../view/profile/";
 import { withAuth } from "../util/";
 
 import "../assets/scss/Inbox.scss";
-
+import { TRANSLATE } from '../../options'
 const status = ["未读", "已读"];
 
 const Inbox = () => {
@@ -122,7 +122,7 @@ const Inbox = () => {
         ) : (
           <div className="no-transactions">
             <div className="image-box" />
-            <span>暂无记录</span>
+            <span>{TRANSLATE('暂无记录')}</span>
           </div>
         )}
       </div>

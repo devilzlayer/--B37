@@ -4,6 +4,8 @@ import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import { UITabs, FormField } from "../../component/";
 import { User as Service } from "../../service/";
 
+import { TRANSLATE } from '../../options'
+
 import "../assets/scss/LoginSA.scss";
 
 function useQuery() {
@@ -75,6 +77,13 @@ function FormSignin(props) {
     );
   }
 
+  function onTranslate (event , lang) {
+      localStorage.setItem('lang' , lang )
+      window.location.reload(true);
+      event.preventDefault()
+      
+  }
+
   if (isLogged) {
     return (
       <Redirect
@@ -96,7 +105,7 @@ function FormSignin(props) {
               id: "username1",
               name: "username",
               type: "text",
-              placeholder: "用户名",
+              placeholder: TRANSLATE("用户名"),
               required: true,
               onChange: userChange,
               ref: refUsername,
@@ -109,7 +118,7 @@ function FormSignin(props) {
               id: "password1",
               name: "password",
               type: "password",
-              placeholder: "密码",
+              placeholder: TRANSLATE("密码"),
               required: true,
               onChange: userChange,
               ref: refPassword,
@@ -125,11 +134,20 @@ function FormSignin(props) {
           className={`submit ${active ? "active" : null}`}
           onClick={active ? userLogin : null}
         >
-          登录
+          {TRANSLATE('登录')}
         </button>
       </div>
       <div className="restore-wrap">
-        <Link to="/restore">忘记密码了吗 ？</Link>
+        <Link to="/restore">{TRANSLATE('忘记密码了吗')}？</Link>
+      </div>
+      <div className="lang-wrap">
+      
+        <Link to="" onClick={(e) =>onTranslate(e , 'zh')}>中文</Link>
+        <Link to="" onClick={(e) =>onTranslate(e , 'en')}>English</Link>
+      </div>
+
+      <div className="backbutton-wrap">
+        <Link to="/">{TRANSLATE('先去逛逛')}</Link>
       </div>
     </div>
   );
@@ -280,7 +298,7 @@ function FormSignup(props) {
               id: "username",
               name: "username",
               type: "text",
-              placeholder: "用户名",
+              placeholder: TRANSLATE("用户名"),
               maxLength: 12,
               onChange: userChange,
               onBlur: outOfFocus,
@@ -304,7 +322,7 @@ function FormSignup(props) {
               id: "password",
               name: "password",
               type: "password",
-              placeholder: "密码",
+              placeholder: TRANSLATE("密码"),
               required: true,
               onFocus: onFocus,
               onChange: userChange,
@@ -324,7 +342,7 @@ function FormSignup(props) {
               id: "passwordok",
               name: "passwordok",
               type: "password",
-              placeholder: "再次输入密码",
+              placeholder: TRANSLATE("再次输入密码"),
               required: true,
               onFocus: onFocus,
               onChange: userChange,
@@ -344,7 +362,7 @@ function FormSignup(props) {
               id: "telephone",
               name: "telephone",
               type: "text",
-              placeholder: "11位手机号",
+              placeholder: TRANSLATE("11号手机号"),
               maxLength: 11,
               required: true,
               onChange: userChange,
@@ -364,12 +382,13 @@ function FormSignup(props) {
             </p>
           ) : null}
           <FormField
-            field={{ label: "好友优惠推荐码(选填)" }}
+            field={{ label: "好友优惠推荐码" }}
+            // 好友优惠推荐码(选填)
             input={{
               id: "agentName",
               name: "agentName",
               type: "text",
-              placeholder: "好友优惠推荐码(选填)",
+              placeholder: TRANSLATE("好友优惠推荐码"),
               required: true,
               onChange: userChange,
               onFocus: onFocus,
@@ -382,7 +401,7 @@ function FormSignup(props) {
           className={`submit ${active ? "active" : null}`}
           onClick={active ? userCreate : null}
         >
-          注册
+          {TRANSLATE('注册')}
         </button>
       </div>
     </div>
@@ -423,15 +442,15 @@ function Login() {
             <div className="load-spin"></div>
             <div className="logo"></div>
             {/* ============ JEAN ============  */}
-            <div className="divider">赞助伙伴</div>
+            <div className="divider">{ TRANSLATE('赞助伙伴')   } </div>
             <div className="sub-logo"></div>
-            <div className="sub-text">奥格斯堡</div>
+            <div className="sub-text">{ TRANSLATE('奥格斯堡')   } </div>
             {/* ============ JEAN ============  */}
             <div className="auth-tabs">
               <UITabs
                 tabs={[
-                  { index: "signin", name: "登录" },
-                  { index: "signup", name: "注册" },
+                  { index: "signin", name: TRANSLATE("登录") },
+                  { index: "signup", name: TRANSLATE("注册") },
                 ]}
                 tab={tab}
                 onSet={setTab}

@@ -10,6 +10,7 @@ import { vipTitles, vipVal } from "./vip/values";
 import { withAuth } from "../util/";
 
 import { User , Transaction} from "../../service";
+import {  TRANSLATE } from '../../options'
 
 const Vip = () => {
   // const history 	= useHistory();
@@ -57,10 +58,10 @@ const Vip = () => {
       <div className="vip-wrap-inner-bg" />
       <div className={`vip-wrap-inner-top-header tab-${tab}`}>
         <Link to="vip" className={`vip-wrap-inner-h-text`}>
-          VIP特权
+          {TRANSLATE('VIP特权')}
         </Link>
         <Link to="vip-details" className={`vip-wrap-inner-h-text active`}>
-          VIP详情
+          {TRANSLATE('VIP详情')}
           {tab === 1 ? <div className={`vip-wrap-inner-h-switch`} /> : null}
         </Link>
       </div>

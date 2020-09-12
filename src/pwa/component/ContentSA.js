@@ -1,13 +1,14 @@
 import React, { useEffect, useState  ,useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-scroll";
-
+import { includes , isArray} from 'lodash'
 import { useWindowDimensions } from "../../util";
-import { User } from "../../service/";
-
+import { User , Game as Service  } from "../../service/";
 
 import "../assets/scss/ContentSA.scss";
 import { head } from "../assets/scss/variables.scss";
+
+import { TRANSLATE } from '../../options'
 
 const ContentSAItems = [
   [
@@ -244,7 +245,7 @@ function ContentSA() {
       <div className={`content-sa-tabs ${!userAuth.data ? 'not':''}`}>
         <div className={`tabs2 tab-n${tab}`}>
           {/* className={`tab${tab === i ? ' active' : ''}`} onClick={e => _setTab(i, e)} */}
-          {["体育", "真人", "电竞", "棋牌", "电子"].map((t, i) => (
+          {["体育", "真人", "电竞", "棋牌", "电子"].map((obj, i) => (
             <Link
               key={i}
               activeClass=" "
@@ -258,7 +259,7 @@ function ContentSA() {
               // onSetActive={(e) => console.log(e)}
               onSetActive={handleSetActive}
             >
-              {t}
+            { TRANSLATE(obj)   }
             </Link>
           ))}
           <div

@@ -2,6 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from 'styled-components'
 import WheelPicker from 'react-simple-wheel-picker';
 import {map , toString} from 'lodash'
+
+import  { TRANSLATE } from '../../../../options'
+
 const WheelWrapper = styled.div`
     position: relative;
     ul{
@@ -39,7 +42,9 @@ const Wheel = (props) => {
     const newBalData = map(options, (obj , i ) =>{
         return { 
           id: toString(i),
-          value : obj
+          value : obj,
+        //   value : TRANSLATE(obj),
+
         }
     }) 
 

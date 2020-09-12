@@ -85,7 +85,7 @@
       width: calc(100% - 82px);
       display: flex;
       flex-direction: column;
-      span {
+      div ,span {
         color: #8ed2f4;
         font-size: 12px;
         line-height: 12px;
@@ -600,6 +600,18 @@
       }
     }
   }
+
+  .lang-wrap {
+    text-align: center;
+    a {
+      margin: 0 10px;
+      color: #39404d;
+        font-size: 14px;
+    }
+  }
+
+
+  
 }
 
 .profile-wrap-sa {

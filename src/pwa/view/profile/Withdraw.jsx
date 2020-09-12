@@ -18,6 +18,7 @@ import { Service } from "./";
 
 import NewCard from "./withdrawal/newCard";
 import { withAuth } from "../../util";
+import { TRANSLATE} from '../../../options'
 
 
 const CardItem = (props) => {
@@ -78,18 +79,18 @@ const CardItem = (props) => {
       <div className="cl-item withdrawal-history-card-value">
         {cancel && (
           <span className="cancel" onClick={() => props.onCancel(obj)}>
-            取消提款
+            {TRANSLATE('取消提款')}
           </span>
         )}
         <p className="cl-card-amount">
-          金额: <span>{value}</span>
+          {TRANSLATE('金额')}: <span>{value}</span>
         </p>
         <p className={`cl-card-status ${classStatus}`}>
           <span>
-            {statusText}
+            {TRANSLATE(statusText)}
             {fail && (
               <span className="fail" onClick={() => onSetKey(index)}>
-                {setKey === index && <span>{obj.verifyComment}</span>}
+                {setKey === index && <span>{TRANSLATE(obj.verifyComment)}</span>}
                 <i />
               </span>
             )}
@@ -341,7 +342,7 @@ const Withdraws = ({ update, alert }) => {
             <div className="withdrawal-history-card">
               <div className="withdrawal-history-card-head">
                 <div className="withdrawal-history-card-title">
-                  <span>最近30天</span>
+                  <span>{TRANSLATE('最近30天')}</span>
                   <i
                     className={reload ? "reload" : ""}
                     onClick={() => setReload(true)}
@@ -647,14 +648,14 @@ const Withdraw = () => {
       <div className="form-field user-balance">
         <div className="user-balance-wrap wallet">
           <span className="user-balance-label">
-            <i /> 中心钱包
+            <i /> {TRANSLATE('中心钱包')}
           </span>
           <span className="user-balance-amount">{userAuth.data.balance}</span>
         </div>
         <div className="user-balance-wrap hr" />
         <div className="user-balance-wrap refresh" onClick={wallet}>
           <i />
-          <span className="user-balance-label">一键回收</span>
+          <span className="user-balance-label">{TRANSLATE('一键回收')}</span>
         </div>
       </div>
 
@@ -662,7 +663,7 @@ const Withdraw = () => {
         <div className="form-field balances-list">
           {balancesRaw.map((balance, i) => (
             <div key={i} className="balances-list--item">
-              <div className="game-name">{balance.game.name}</div>
+              <div className="game-name">{TRANSLATE(balance.game.name)}</div>
               <div className="game-balance">
                 {BigNumber(balance.balance).toFormat(2)}
               </div>
@@ -670,7 +671,7 @@ const Withdraw = () => {
           ))}
         </div>
         <div className="balances-list-load-more" onClick={() => onShowVenue()}>
-          <span className={showVenue ? "show" : ""}>显示所有场馆</span>
+          <span className={showVenue ? "show" : ""}>{TRANSLATE('显示所有场馆')}</span>
         </div>
       </div>
 
@@ -727,13 +728,13 @@ const Withdraw = () => {
             onClick={() => setShowNewCard(true)}
             className="w-t-btn new-button-card"
           >
-            新增银行卡
+            {TRANSLATE('新增银行卡')}
           </button>
           <button
             onClick={() => setShowDelCard(true)}
             className="w-t-btn untie-button-card"
           >
-            解绑银行卡
+            {TRANSLATE('解绑银行卡')}
           </button>
         </div>
 
@@ -749,6 +750,7 @@ const Withdraw = () => {
               }}
               input={{
                 ...f,
+                placeholder: TRANSLATE(f.placeholder),
                 name: f.id,
                 value: form[f.id],
                 onChange: (e) => onlyNumbers(e)
@@ -758,13 +760,13 @@ const Withdraw = () => {
             />
           ))}
           <button onClick={() => onMax()} className="btn-field-max">
-            最大金额
+            {TRANSLATE('最大金额')}
           </button>
         </div>
 
         <div className="submit">
           <button className="button-stylized" onClick={withdraw}>
-            提交
+            {TRANSLATE('提交')}
           </button>
         </div>
       </div>

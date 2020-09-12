@@ -4,6 +4,7 @@ import cx from "classnames";
 import { User } from '../../service/';
 
 import { Icon } from "../../component/";
+import { TRANSLATE } from '../../options'
 
 import "../assets/scss/MenuSA.scss";
 
@@ -17,7 +18,7 @@ function MenuSAItem(props) {
         onClick={props.open}
       >
         <div className={`icon ${props.icon}`}>{/* {icons[props.icon]} */}</div>
-        <div className="name">{props.name}</div>
+        <div className="name">{TRANSLATE(props.name) }</div>
       </button>
     );
   }
@@ -34,7 +35,7 @@ function MenuSAItem(props) {
         }}
       >
         <div className={`icon ${props.icon}`}>{/* {icons[props.icon]} */}</div>
-        <div className="name">{props.name}</div>
+        <div className="name">{TRANSLATE(props.name)}</div>
       </NavLink>
     );
   }
@@ -51,7 +52,7 @@ function MenuSAItem(props) {
         }}
       >
         <div className={`icon ${props.icon}`}>{/* {icons[props.icon]} */}</div>
-        <div className="name">{props.name}</div>
+        <div className="name">{TRANSLATE(props.name)}</div>
       </NavLink>
     );
   }
@@ -59,7 +60,7 @@ function MenuSAItem(props) {
   return (
     <NavLink exact className="menu--item" to={props.to}>
       <div className={`icon ${props.icon}`}>{/* {icons[props.icon]} */}</div>
-      <div className="name">{props.name}</div>
+      <div className="name">{TRANSLATE(props.name)}</div>
     </NavLink>
   );
 }

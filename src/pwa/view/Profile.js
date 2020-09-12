@@ -9,6 +9,9 @@ import { UIAlertSA } from "../component/";
 import { vipProgress } from "./vip/values";
 import { getAuthKey } from "../../util";
 
+import { TRANSLATE , REGHTML } from '../../options'
+
+
 import "../assets/scss/ProfileSA.scss";
 import "react-image-crop/lib/ReactCrop.scss";
 
@@ -214,6 +217,14 @@ function Menu(props) {
 
 
   
+  const onTranslate = (event , lang) => {
+    localStorage.setItem('lang' , lang )
+    window.location.reload(true);
+    event.preventDefault()
+    
+  }
+
+  
   return (
     <div className="profile-sa">
       {/* ============ EDIT ============ */}
@@ -238,7 +249,14 @@ function Menu(props) {
                   <span className={`vip-badge-${vipCount}`} />
                 </p>
                 <span>
-                  加入U体育<span>{vipDays}</span>天
+                 
+                  <REGHTML 
+                    intent={['加入U体育' , '天'] }
+                    value={vipDays}
+                    html='span'
+                  >
+                   加入U体育<span>{vipDays}</span>天 
+                  </REGHTML >
                 </span>
                 <div className="profile-sa-bar-wrap">
                   <div className="profile-bar">
@@ -248,11 +266,17 @@ function Menu(props) {
 
                   <Link className="profile-vip" to={"/vip"} onClick={onClick}>
                     <i />
-                    VIP详情
+                    {TRANSLATE('VIP详情')}
                   </Link>
                 </div>
                 <span>
-                  升级还差¥ <span>{vipAmount}</span>元流水
+                  <REGHTML 
+                    intent={['升级还差¥' , '元流水'] }
+                    value={vipAmount}
+                    html='span'
+                  >
+                   升级还差¥ <span>{vipAmount}</span>元流水
+                  </REGHTML >
                 </span>
               </div>
             </div>
@@ -260,7 +284,7 @@ function Menu(props) {
               <div className="profile-sa-widget-wrap">
                 {userAuth.data && 
                 <div className="profile-sa-widget-value">
-                  <span>中心:</span>
+                  <span>{TRANSLATE('中心')}:</span>
                   <p>
                     <span>￥</span>
                     {userAuth.data.balance}
@@ -273,15 +297,15 @@ function Menu(props) {
                 <div className="profile-sa-widget-list">
                   <Link className="profiel-sa-widget-item" to={"/profile/deposit?a=1"} onClick={onClick} target="_blank">
                     <i className="topup" />
-                    <span>充值</span>
+                    <span>{TRANSLATE('充值')}</span>
                   </Link>
                   <Link className="profiel-sa-widget-item" to={"/profile/transfer"} onClick={onClick}>
                     <i className="transfer" />
-                    <span>转账</span>
+                    <span>{TRANSLATE('转账')}</span>
                   </Link>
                   <Link className="profiel-sa-widget-item" to={"/profile/withdraw"} onClick={onClick}>
                     <i className="withdraw" />
-                    <span>提款</span>
+                    <span>{TRANSLATE('提款')}</span>
                   </Link>
                   <Link className="profiel-sa-widget-item" to={"/inbox"} onClick={onClick}>
                     <i className="information">
@@ -289,7 +313,7 @@ function Menu(props) {
                         <span className="count">{inboxCount}</span>
                       ) : null}
                     </i>
-                    <span>信息</span>
+                    <span>{TRANSLATE('信息')}</span>
                   </Link>
                 </div>
               </div>
@@ -321,6 +345,11 @@ function Menu(props) {
             </>
           ) : null}
           <MenuItem className="n10" onClick={logout} name="退出登录" />
+        </div>
+
+        <div className="lang-wrap">
+          <a onClick={(e) =>onTranslate(e, 'zh')}>中文</a>
+          <a onClick={(e) =>onTranslate(e, 'en')}>English</a>
         </div>
       </div>
 

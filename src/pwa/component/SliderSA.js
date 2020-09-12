@@ -23,19 +23,19 @@ function SliderSA() {
       <Slider draggable={false} arrows={false} autoplay={true} dots={true}>
         <Link to="/about" className="slider--item" onClick={onClick}>
           <img
-            src={"https://m.ubet8866.com/static/media/banner-image1.875c41ac.png"}
+            src={require("../assets/img/slider/item/banner-image1.png")}
             alt=""
           />
         </Link>
         <Link to="/about" className="slider--item" onClick={onClick}>
           <img
-            src={"https://m.ubet8866.com/static/media/banner-image2.637e7a41.png"}
+            src={require("../assets/img/slider/item/banner-image2.png")}
             alt=""
           />
         </Link>
         <Link to="/about" className="slider--item" onClick={onClick}>
           <img
-            src={"https://m.ubet8866.com/static/media/banner-image3.81f42b83.png"}
+            src={require("../assets/img/slider/item/banner-image3.png")}
             alt=""
           />
         </Link>

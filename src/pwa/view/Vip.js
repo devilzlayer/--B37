@@ -15,6 +15,8 @@ import { vipSlideValue, vipProgress } from "./vip/values";
 import "../assets/scss/Vip.scss";
 import { withAuth } from "../util/";
 
+import {  TRANSLATE } from '../../options'
+
 const Vip = () => {
   const history = useHistory();
   const slideItem = useRef(null);
@@ -118,11 +120,11 @@ const Vip = () => {
         <div className="vip-wrap-inner-bg" />
         <div className={`vip-wrap-inner-top-header tab-${tab}`}>
           <Link to="vip" className={`vip-wrap-inner-h-text active`}>
-            VIP特权
+            {TRANSLATE('VIP特权')}
             {tab === 0 ? <div className={`vip-wrap-inner-h-switch`} /> : null}
           </Link>
           <Link to="vip-details" className={`vip-wrap-inner-h-text`}>
-            VIP详情
+            {TRANSLATE('VIP详情')}
           </Link>
         </div>
 

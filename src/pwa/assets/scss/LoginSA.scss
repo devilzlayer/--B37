@@ -141,6 +141,24 @@
     .restore-wrap {
       margin: 20px 0 0;
     }
+    .lang-wrap{
+      margin: 20px 0 0;
+      a{
+        margin: 0 10px;
+      }
+    }
+
+    .backbutton-wrap{
+      margin-top: 20px;
+      a{
+        background: #4093ea;
+        width: 100%;
+        display: block;
+        padding: 10px;
+        border-radius: 50px;
+      }
+    }
+    
     button.submit {
       width: 100%;
       font-weight: 400;

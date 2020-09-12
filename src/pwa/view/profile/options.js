@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TRANSLATE } from '../../../options'
+
 const avatarClass = [
   {
     name: "avatar-1",
@@ -26,14 +28,14 @@ const avatarClass = [
 const MenuItem = ({ to, onClick, name, className }) => {
   if (onClick && !to) {
     return (
-      <button
+      <button 
         className={`profile-sa-menu--item item-${className}`}
         onClick={onClick}
       >
         <i></i>
         <p>
           {" "}
-          {name} <span></span>
+          {TRANSLATE(name)} <span></span>
         </p>
       </button>
     );
@@ -42,7 +44,7 @@ const MenuItem = ({ to, onClick, name, className }) => {
   return (
     <Link className={`profile-sa-menu--item item-${className}`} to={to} onClick={onClick}>
       <i></i>
-      <p>{name}</p>
+      <p>{TRANSLATE(name)}</p>
       <span></span>
     </Link>
   );

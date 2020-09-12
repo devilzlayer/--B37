@@ -12,6 +12,9 @@ import { User, Transaction } from "../../service";
 import { getAuthKey } from "../../util";
 import { withAuth } from "../util/";
 
+import {  TRANSLATE } from '../../options'
+
+
 const CardItem = (props) => {
   const { label, subLabel, time, value, status, className } = props;
 
@@ -26,7 +29,7 @@ const CardItem = (props) => {
       </div>
       <div className="cl-item transfer-record-card-value">
         <p className="cl-card-amount">
-          金额: <span>{value}</span>
+          {TRANSLATE('金额')}: <span>{value}</span>
         </p>
         <p
           className={`cl-card-status ${
@@ -34,7 +37,7 @@ const CardItem = (props) => {
           }`}
         >
           {/* <span>	{status? "成功" : "失败"}</span> */}
-          <span>{status}</span>
+          <span>{TRANSLATE(status)}</span>
         </p>
       </div>
     </div>
@@ -85,7 +88,7 @@ const TransferRecord = () => {
           <div className="transfer-record-card">
             <div className="transfer-record-card-head">
               <div className="transfer-record-card-title">
-                <span>最近30天</span>
+                <span>{TRANSLATE('最近30天')}</span>
                 <i
                   className={load ? "reload" : ""}
                   onClick={() => setLoad(true)}
@@ -113,7 +116,7 @@ const TransferRecord = () => {
               ) : (
                 <div className="no-transactions">
                   <div className="image-box" />
-                  <span>暂无记录</span>
+                  <span>{TRANSLATE('暂无记录')}</span>
                 </div>
               )}
             </div>

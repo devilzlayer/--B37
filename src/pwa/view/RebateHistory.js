@@ -12,6 +12,8 @@ import { User } from "../../service";
 import { getAuthKey } from "../../util";
 import { withAuth } from "../util/";
 
+import {  TRANSLATE } from '../../options'
+
 const CardItem = (props) => {
   const { label, time, value, ratio, status, className } = props;
   return (
@@ -22,10 +24,10 @@ const CardItem = (props) => {
       </div>
       <div className="cl-item rebate-history-card-value">
         <p className="cl-card-amount">
-          返水金额: <span>{value}</span>
+          {TRANSLATE('返水金额')}: <span>{value}</span>
         </p>
         <p className="cl-card-status">
-          {status} {ratio && <span>{ratio}</span>}
+          {TRANSLATE(status)} {ratio && <span>{ratio}</span>}
         </p>
       </div>
     </div>
@@ -76,7 +78,7 @@ const RebateHistory = () => {
           <div className="rebate-history-card">
             <div className="rebate-history-card-head">
               <div className="rebate-history-card-title">
-                <span>最近30天</span>
+                <span>{TRANSLATE('最近30天')}</span>
                 <i
                   className={load ? "reload" : ""}
                   onClick={() => setLoad(true)}
@@ -102,7 +104,7 @@ const RebateHistory = () => {
               ) : (
                 <div className="no-transactions">
                   <div className="image-box" />
-                  <span>暂无记录</span>
+                  <span>{TRANSLATE('暂无记录')}</span>
                 </div>
               )}
             </div>

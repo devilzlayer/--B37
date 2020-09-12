@@ -1,0 +1,97 @@
+html:lang(en) {
+    body{
+        .app-sa{
+            .user-sa {
+                .user-sa-links {
+                    a{
+                        i{
+                            width: 18px;
+                            height: 17px;
+                        }
+                        &.link-deposit{
+                            i{
+
+                            }
+                        }
+                        &.link-transfer{
+                            i{
+                                width: 21px;
+                                height: 21px;
+                            }
+                        }
+                        &.link-debit{
+                            i{
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                        &.link-inbox{
+                            i{
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                        span{
+                            font-size: 13px;
+                            @media screen and (max-width: 320px) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            .profile-sa{
+                .profile-sa-header-wrap{
+                    .profile-sa-bar-wrap{
+                        .profile-vip , span{
+                            font-size: 12px;
+                        }
+                    }
+                }
+                .profile-sa-widget-list{
+                    a{
+                        i{
+                            width: 18px;
+                            height: 17px;
+                            &.topup{
+
+                            } 
+                            &.transfer{
+                                width: 21px;
+                                height: 21px;
+                            }
+                            &.withdraw{
+                                width: 20px; 
+                                height: 20px;
+                            }
+                            &.information{
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                        span{
+                            font-size: 13px;
+                            @media screen and (max-width: 320px) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .vip-wrap {
+            .vip-wrap-inner-top-header{
+                .vip-wrap-inner-h-text{
+                    font-size: 16px;
+                }
+            }
+            .vip-wrap-inner-h-switch {
+                width: 78px;
+            }
+
+ 
+        }
+
+    }
+}

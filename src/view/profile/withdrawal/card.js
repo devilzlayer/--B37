@@ -1,5 +1,5 @@
 import React , {useEffect , useState , useMemo , useContext } from "react";
-import { map, filter , head , size } from "lodash";
+import { map, filter , head , size , isEmpty} from "lodash";
 import * as moment from "moment";
 import Picker from "react-mobile-picker";
 
@@ -154,8 +154,9 @@ const CardWrap = (props) =>{
                 <div className={`withdrawal-card-wrap-box del ${animate && show == 'del' ? 'animate' : ''}`}>
                     <span className="w-n-c-arrow" onClick={Hide} />
                     <div className="withdrawal-card-wrap-content">
-                        <div className="wcwc-title">删除卡</div>
-
+                        {!isEmpty(cardList) && <div className="wcwc-title">删除卡</div> }
+                        {isEmpty(cardList) && <div className="wcwc-title wcwc-nofound">找不到卡</div> }
+                        
                         <div className="w-n-c-del-wrap">
                             {cardList && map(cardList, (obj, i) => {
                                 delCount++;

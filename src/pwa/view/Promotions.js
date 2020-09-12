@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../util/";
 import { User, Promotions as Service } from "../../service/";
 
+import { TRANSLATE } from '../../options'
+
 import "../assets/scss/PromotionsSA.scss";
 
 function Promotions() {
@@ -40,7 +42,7 @@ function Promotions() {
     <div className="promotions-sa">
       <div className="promotions-sa-head">
         <div className="promotions-sa-title">
-          <h1>促销活动</h1>
+          <h1>{TRANSLATE('促销活动')}</h1>
         </div>
       </div>
       <div className="promotions-sa-content">
@@ -61,7 +63,7 @@ function Promotions() {
               <div className="banner-body">
                 <p>
                   离活动结束: {promotion.endTime}
-                  <span className="arrow">更多内容</span>
+                  <span className="arrow">{TRANSLATE('更多内容')}</span>
                 </p>
               </div>
             </div>
